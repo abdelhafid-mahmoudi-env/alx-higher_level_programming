@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import random
 
 # Assign a random signed number to the variable number
@@ -19,4 +20,4 @@ else:
     message = "and is less than 6 and not 0"
 
 # Print the final output
-print(f"Last digit of {number} is {last_digit} {message}")
+print(f"Last digit of {number} is {last_digit} {message}\n")
