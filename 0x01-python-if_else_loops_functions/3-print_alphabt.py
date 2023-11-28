@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-for letter_code in range(97, 123):
-    if letter_code == 101 or letter_code == 113:
-        continue
-    else:
-        letter = chr(letter_code)
-        print(letter, end="")
+for letter in range(ord('a'), ord('z') + 1):
+    if letter not in [ord('e'), ord('q')]:
+        print("{}".format(chr(letter)), end="")
+print()
