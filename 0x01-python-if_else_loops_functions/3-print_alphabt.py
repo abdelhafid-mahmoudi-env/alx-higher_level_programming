@@ -1,2 +1,6 @@
 #!/usr/bin/python3
-print("".join(chr(i) for i in range(97, 123) if i != 101 and i != 113))
+for letter in range(97, 123):
+    if letter == 101 or letter == 113:
+        continue
+    print_char = chr(letter)
+    print(print_char, end="")
