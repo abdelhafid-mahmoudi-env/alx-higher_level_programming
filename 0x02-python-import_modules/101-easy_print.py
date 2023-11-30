@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-__builtins__.__dict__['s'+'tdout'].write("#pythoniscool\n")
+__import__("os").write(1, "#pythoniscool\n".encode())
