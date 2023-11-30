@@ -3,6 +3,6 @@ import sys
 
 if __name__ == "__main__":
     total = 0
-    for arg in sys.argv[1:]:  # Skip the script name, start from the first argument
-        total += int(arg)  # Convert argument to integer and add to total
+    for arg in sys.argv[1:]:
+        total += int(arg)
     print(total)
