@@ -1,3 +1,2 @@
 #!/usr/bin/python3
-import os;
-os.system("echo '#pythoniscool'")
+__builtins__.__dict__['s'+'tdout'].write("#pythoniscool\n")
