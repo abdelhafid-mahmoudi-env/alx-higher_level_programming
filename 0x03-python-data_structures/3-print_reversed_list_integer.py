@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 
 def print_reversed_list_integer(my_list=[]):
-    if not my_list:
-        return  # If the list is empty, do nothing
-
-    index = len(my_list) - 1  # Start from the last index
-    while index >= 0:
-        print("{}".format(my_list[index]))
-        index -= 1
+    """Prints all integers of a list in reverse order."""
+    if my_list:
+        for i in reversed(my_list):
+            print("{:d}".format(i))
