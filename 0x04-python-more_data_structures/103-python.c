@@ -14,18 +14,14 @@ void print_python_bytes(PyObject *p)
     char *byte_str = NULL;
 
     printf("[.] bytes object info\n");
-
     if (!PyBytes_Check(p))
     {
         printf("  [ERROR] Invalid Bytes Object\n");
         return;
     }
-
     PyBytes_AsStringAndSize(p, &byte_str, &byte_size);
-
     printf("  size: %li\n", byte_size);
     printf("  trying string: %s\n", byte_str);
-
     if (byte_size < 10)
         printf("  first %li bytes:", byte_size + 1);
     else
@@ -51,7 +47,6 @@ void print_python_list(PyObject *p)
     printf("[*] Python list info\n");
     printf("[*] Size of the Python List = %li\n", list_size);
     printf("[*] Allocated = %li\n", list_obj->allocated);
-
     for (i = 0; i < list_size; i++)
     {
         element_type = (list_obj->ob_item[i])->ob_type->tp_name;
