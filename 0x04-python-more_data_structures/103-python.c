@@ -1,50 +1,66 @@
 #include <Python.h>
 
-void print_python_bytes(PyObject *p) {
-    Py_ssize_t size, i;
-    char *string;
-    PyObject *bytes;
+void print_python_set(PyObject *p)
+{
+    long int size;
+    int i;
+    PyObject *set_iterator;
 
-    printf("[.] bytes object info\n");
-    if (!PyBytes_Check(p)) {
-        printf("  [ERROR] Invalid Bytes Object\n");
+    printf("[*] Python set info\n");
+    if (!PySet_Check(p))
+    {
+        printf("[ERROR] Invalid Set Object\n");
         return;
     }
 
-    size = PyBytes_Size(p);
-    string = PyBytes_AsString(p);
-    printf("  size: %ld\n", size);
-    printf("  trying string: %s\n", string);
+    size = PySet_Size(p);
+    printf("[*] Size of the Python Set = %li\n", size);
 
-    printf("  first 10 bytes: ");
-    for (i = 0; i < size && i < 10; i++) {
-        printf("%02x ", (unsigned char)string[i]);
+    set_iterator = PyObject_GetIter(p);
+    if (set_iterator != NULL)
+    {
+        PyObject *set_item;
+        printf("Elements:");
+
+        while ((set_item = PyIter_Next(set_iterator)) != NULL)
+        {
+            PyObject *repr = PyObject_Str(set_item);
+            const char *str = PyUnicode_AsUTF8(repr);
+            printf(" %s", str);
+
+            Py_DECREF(set_item);
+            Py_DECREF(repr);
+        }
+        printf("\n");
+
+        Py_DECREF(set_iterator);
+    }
+}
+
+void print_python_tuple(PyObject *p)
+{
+    long int size;
+    int i;
+
+    printf("[*] Python tuple info\n");
+    if (!PyTuple_Check(p))
+    {
+        printf("[ERROR] Invalid Tuple Object\n");
+        return;
+    }
+
+    size = PyTuple_Size(p);
+    printf("[*] Size of the Python Tuple = %li\n", size);
+
+    printf("Elements:");
+    for (i = 0; i < size; i++)
+    {
+        PyObject *tuple_item = PyTuple_GetItem(p, i);
+        PyObject *repr = PyObject_Str(tuple_item);
+        const char *str = PyUnicode_AsUTF8(repr);
+        printf(" %s", str);
+
+        Py_DECREF(repr);
     }
     printf("\n");
 }
-
-void print_python_list(PyObject *p) {
-    Py_ssize_t size, i;
-    PyObject *element;
-
-    printf("[*] Python list info\n");
-    if (!PyList_Check(p)) {
-        printf("  [ERROR] Invalid List Object\n");
-        return;
-    }
-
-    size = PyList_Size(p);
-    printf("[*] Size of the Python List = %ld\n", size);
-    printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
-
-    for (i = 0; i < size; i++) {
-        element = PyList_GetItem(p, i);
-        printf("Element %ld: %s\n", i, Py_TYPE(element)->tp_name);
-
-        if (PyBytes_Check(element)) {
-            print_python_bytes(element);
-        }
-    }
-}
-
-
