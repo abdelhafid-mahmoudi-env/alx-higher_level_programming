@@ -44,6 +44,7 @@ void print_python_list(PyObject *p)
     long int list_size = PyList_Size(p);
     int i;
     PyListObject *list_obj = (PyListObject *)p;
+    PyObject *element = NULL;
     const char *element_type;
 
     printf("[*] Python list info\n");
@@ -51,7 +52,7 @@ void print_python_list(PyObject *p)
     printf("[*] Allocated = %li\n", list_obj->allocated);
     for (i = 0; i < list_size; i++)
     {
-	PyObject *element = list->ob_item[i];
+	*element = list->ob_item[i];
         element_type = element->ob_type->tp_name;
         printf("Element %i: %s\n", i, element_type);
         if (strcmp(element_type, "bytes") == 0)
