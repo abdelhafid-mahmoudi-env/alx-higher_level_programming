@@ -14,7 +14,7 @@ void print_python_bytes(PyObject *p)
     char *byte_str = NULL;
 
     printf("[.] bytes object info\n");
-    if (!PyObject_IsInstance(p, (PyObject*)&PyBytes_Type))
+    if (!PyBytes_Check(p))
     {
         printf("  [ERROR] Invalid Bytes Object\n");
         return;
