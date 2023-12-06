@@ -10,7 +10,6 @@
 void print_python_bytes(PyObject *p)
 {
     int i;
-    char *byte_str = NULL;
 
     printf("[.] bytes object info\n");
     if (!PyBytes_Check(p) && !PyByteArray_Check(p))
@@ -19,16 +18,15 @@ void print_python_bytes(PyObject *p)
         return;
     }
 
-    byte_str = PyBytes_AsString(p);
     printf("  size: %li\n", PyBytes_Size(p));
-    printf("  trying string: %s\n", byte_str);
+    printf("  trying string: %s\n", PyBytes_AsString(p));
     if (PyBytes_Size(p) < 10)
         printf("  first %li bytes:", PyBytes_Size(p) + 1);
     else
         printf("  first 10 bytes:");
 
     for (i = 0; i <= PyBytes_Size(p) && i < 10; i++)
-        printf(" %02hhx", byte_str[i]);
+        printf(" %02hhx", PyBytes_AsString(p)[i]);
 
     printf("\n");
 }
