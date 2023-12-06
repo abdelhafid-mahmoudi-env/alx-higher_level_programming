@@ -21,15 +21,14 @@ void print_python_bytes(PyObject *p)
     }
 
     byte_str = PyBytes_AsString(p);
-    byte_size = PyBytes_Size(p);
-    printf("  size: %li\n", byte_size);
+    printf("  size: %li\n", PyBytes_Size(p));
     printf("  trying string: %s\n", byte_str);
-    if (byte_size < 10)
-        printf("  first %li bytes:", byte_size + 1);
+    if (PyBytes_Size(p) < 10)
+        printf("  first %li bytes:", PyBytes_Size(p) + 1);
     else
         printf("  first 10 bytes:");
 
-    for (i = 0; i <= byte_size && i < 10; i++)
+    for (i = 0; i <= PyBytes_Size(p) && i < 10; i++)
         printf(" %02hhx", byte_str[i]);
 
     printf("\n");
