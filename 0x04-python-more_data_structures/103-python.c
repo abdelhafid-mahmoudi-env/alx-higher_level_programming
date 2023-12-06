@@ -52,7 +52,7 @@ void print_python_list(PyObject *p)
     printf("[*] Allocated = %li\n", list_obj->allocated);
     for (i = 0; i < list_size; i++)
     {
-	*element = list->ob_item[i];
+	*element = list_obj->ob_item[i];
         element_type = element->ob_type->tp_name;
         printf("Element %i: %s\n", i, element_type);
         if (strcmp(element_type, "bytes") == 0)
