@@ -9,7 +9,6 @@
  */
 void print_python_bytes(PyObject *p)
 {
-    long int byte_size;
     int i;
     char *byte_str = NULL;
 
