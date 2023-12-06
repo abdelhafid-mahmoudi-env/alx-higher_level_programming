@@ -44,7 +44,6 @@ void print_python_list(PyObject *p)
     int i;
     PyListObject *list_obj = (PyListObject *)p;
     PyObject *element;
-    const char *element_type;
 
     printf("[*] Python list info\n");
     printf("[*] Size of the Python List = %li\n", PyList_Size(p));
