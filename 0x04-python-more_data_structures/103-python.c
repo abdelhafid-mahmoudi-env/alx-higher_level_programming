@@ -19,7 +19,8 @@ void print_python_bytes(PyObject *p)
         printf("  [ERROR] Invalid Bytes Object\n");
         return;
     }
-    PyBytes_AsStringAndSize(p, &byte_str, &byte_size);
+    byte_str = PyBytes_AsString(p);
+    byte_size = PyBytes_Size(p);
     printf("  size: %li\n", byte_size);
     printf("  trying string: %s\n", byte_str);
     if (byte_size < 10)
