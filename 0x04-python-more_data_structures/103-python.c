@@ -19,6 +19,7 @@ void print_python_bytes(PyObject *p)
         printf("  [ERROR] Invalid Bytes Object\n");
         return;
     }
+
     byte_str = PyBytes_AsString(p);
     byte_size = PyBytes_Size(p);
     printf("  size: %li\n", byte_size);
