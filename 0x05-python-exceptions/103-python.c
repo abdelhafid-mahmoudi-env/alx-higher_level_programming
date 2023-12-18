@@ -6,9 +6,10 @@
 #include <bytesobject.h>
 #include <floatobject.h>
 #include <string.h>
+
 /**
- * print_python_bytes - print python things
- * @p: pointer to PyObject p
+ * print_python_bytes - Prints information about a Python bytes object.
+ * @p: A pointer to the PyObject representing the bytes object.
  */
 void print_python_bytes(PyObject *p)
 {
@@ -30,9 +31,10 @@ void print_python_bytes(PyObject *p)
 		printf("%02hhx ", str[i]);
 	printf("%02hhx\n", str[i]);
 }
+
 /**
- * print_python_float - print python things
- * @p: pointer to PyObject p
+ * print_python_float - Prints information about a Python float object.
+ * @p: A pointer to the PyObject representing the float object.
  */
 void print_python_float(PyObject *p)
 {
@@ -50,9 +52,10 @@ void print_python_float(PyObject *p)
 	str = PyOS_double_to_string(f, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
 	printf("  value: %s\n", str);
 }
+
 /**
- * print_python_list - print python things
- * @p: pointer to PyObject p
+ * print_python_list - Prints information about a Python list object.
+ * @p: A pointer to the PyObject representing the list object.
  */
 void print_python_list(PyObject *p)
 {
