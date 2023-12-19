@@ -1,38 +1,48 @@
 #!/usr/bin/python3
 """Defines a class Square"""
 
+
 class Square:
     """
-    Class that defines properties of square by: (based on 5-square.py).
+    Class that defines properties of square.
 
     Attributes:
-        size: size of a square (1 side).
+        __size (int): size of a square (1 side).
+        __position (tuple): position of the square.
     """
     def __init__(self, size=0, position=(0, 0)):
-        """Initializes a square.
+        """Creates new instances of square.
 
         Args:
-            size (int): The size of the square (default is 0).
-            position (tuple): The position of the square (default is (0, 0)).
+            size (int): size of the square (1 side).
+            position (tuple): position of the square.
         """
         self.size = size
         self.position = position
 
-    @property
-    def size(self):
-        """Gets the size of the square.
+    def area(self):
+        """Calculates the area of square.
 
         Returns:
-            int: The size of the square.
+            int: the current square area.
+        """
+        return self.__size ** 2
+
+    @property
+    def size(self):
+        """Retrieves the size of a square.
+
+        Returns:
+            int: the size of the square.
         """
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Sets the size of the square.
+        """Sets the size of a square.
 
         Args:
-            value (int): The size of the square.
+            value (int): size of a square (1 side).
 
         Raises:
             TypeError: If size is not an integer.
@@ -46,10 +56,10 @@ class Square:
 
     @property
     def position(self):
-        """Gets the position of the square.
+        """Retrieves the position of the square.
 
         Returns:
-            tuple: The position of the square.
+            tuple: the position of the square.
         """
         return self.__position
 
@@ -58,54 +68,36 @@ class Square:
         """Sets the position of the square.
 
         Args:
-            value (tuple): The position of the square.
+            value (tuple): position of the square.
 
         Raises:
             TypeError: If position is not a tuple of 2 positive integers.
         """
-        if not isinstance(value, tuple):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        if len(value) != 2:
-            raise TypeError("position must be a tuple of 2 positive integers")
-        if not isinstance(value[0], int) or not isinstance(value[1], int):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        if value[0] < 0 or value[1] < 0:
+        if not isinstance(value, tuple) or len(value) != 2 \
+                or not all(isinstance(i, int) and i >= 0 for i in value):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
-    def area(self):
-        """Computes and returns the area of the square.
-
-        Returns:
-            int: The area of the square.
-        """
-        return self.__size ** 2
-
     def my_print(self):
-        """Prints the square using '#' characters"""
-        
+        """Prints the square with the character #.
+        """
         if self.__size == 0:
             print()
         else:
-            for j in range(self.__position[1]):
+            for i in range(self.__position[1]):
                 print()
             for i in range(self.__size):
-                for k in range(self.__position[0]):
-                    print(" ",  end="")
-                print("#" * (self.__size))
+                print(" " * self.__position[0] + "#" * self.__size)
 
     def __str__(self):
-        """Returns a string representation of the square.
+        """String representation of the square.
 
         Returns:
-            str: A string representation of the square.
+            str: String representation of the square.
         """
-        result = []
         if self.__size == 0:
             return ""
-        for i in range(self.__position[1]):
-            result.append("")
-        for i in range(self.__size):
-            result.append(" " * self.__position[0] + "#" * self.__size)
-        return "\n".join(result)
+        result = "\n" * self.__position[1]
+        result += "\n".join(" " * self.__position[0] + "#" * self.__size for _ in range(self.__size))
+        return result
 
