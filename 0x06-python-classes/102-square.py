@@ -1,14 +1,9 @@
 #!/usr/bin/python3
 """Defines a class Square"""
 
-
 class Square:
-    """
-    Class that defines properties of square.
+    """Class that defines properties of square"""
 
-    Attributes:
-        __size (float or int): size of a square (1 side).
-    """
     def __init__(self, size=0):
         """Creates new instances of square.
 
@@ -80,7 +75,8 @@ class Square:
             other (Square): Another Square object to compare.
 
         Returns:
-            bool: True if the area of this square is less than the area of the other square, False otherwise.
+            bool: True if the area of this square is less than the 
+            area of the other square, False otherwise.
         """
         return self.area() < other.area()
 
@@ -91,7 +87,8 @@ class Square:
             other (Square): Another Square object to compare.
 
         Returns:
-            bool: True if the area of this square is less than or equal to the area of the other square, False otherwise.
+            bool: True if the area of this square is less than or equal to 
+            the area of the other square, False otherwise.
         """
         return self.area() <= other.area()
 
@@ -102,7 +99,8 @@ class Square:
             other (Square): Another Square object to compare.
 
         Returns:
-            bool: True if the area of this square is greater than the area of the other square, False otherwise.
+            bool: True if the area of this square
+            is greater than the area of the other square, False otherwise.
         """
         return self.area() > other.area()
 
@@ -113,6 +111,7 @@ class Square:
             other (Square): Another Square object to compare.
 
         Returns:
-            bool: True if the area of this square is greater than or equal to the area of the other square, False otherwise.
+            bool: True if the area of this square is
+            greater than or equal to the area of the other square, False otherwise.
         """
         return self.area() >= other.area()
