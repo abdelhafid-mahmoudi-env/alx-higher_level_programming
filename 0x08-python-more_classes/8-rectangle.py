@@ -50,16 +50,23 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        if self.__width == 0 or self.__height == 0:
-            return ""
-        return "\n".join([str(self.print_symbol) * self.__width for _ in range(self.__height)])
+        total = ""
+        for i in range(self.__height):
+            for j in range(self.__width):
+                try:
+                    total += str(self.print_symbol)
+                except Exception:
+                    total += type(self).print_symbol
+            if i is not self.__height - 1:
+                total += "\n"
+        return total
 
     def __repr__(self):
-        return "Rectangle({}, {})".format(self.__width, self.__height)
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
 
     def __del__(self):
-        Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
