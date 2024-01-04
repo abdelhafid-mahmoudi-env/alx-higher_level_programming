@@ -2,7 +2,7 @@
 """
 This is the "Rectangle"  module.
 
-La tete de rectangle.
+This module provides a simple Rectangle class.
 """
 
 
