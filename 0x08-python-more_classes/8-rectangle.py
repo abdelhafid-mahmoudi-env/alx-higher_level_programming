@@ -2,8 +2,7 @@
 """
 This module defines a Rectangle class.
 
-The Rectangle class represents rectangles and provides methods to calculate
-area, perimeter, and compare rectangles based on their areas.
+The Rectangle class represents rectangles and provides methods to calculate.
 """
 
 
