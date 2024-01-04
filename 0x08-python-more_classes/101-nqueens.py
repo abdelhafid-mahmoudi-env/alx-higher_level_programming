@@ -44,7 +44,7 @@ def solve_nqueens(n):
                 board[row] = -1
 
     if n < 4:
-        print("N must be at least 4")
+        print("N must be at least 4", file=sys.stderr)
         sys.exit(1)
 
     board = [-1] * n
@@ -52,13 +52,13 @@ def solve_nqueens(n):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: nqueens N")
+        print("Usage: nqueens N", file=sys.stderr)
         sys.exit(1)
 
     try:
         N = int(sys.argv[1])
     except ValueError:
-        print("N must be a number")
+        print("N must be a number", file=sys.stderr)
         sys.exit(1)
 
     solve_nqueens(N)
