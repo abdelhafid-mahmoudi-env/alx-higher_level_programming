@@ -1,57 +1,65 @@
 #!/usr/bin/python3
 """
-This is the "Rectangle" module.
+This is the "N Queens" module.
 
-This module provides a Rectangle class.
+This module provides a solution to the N Queens puzzle.
 """
-
 
 from sys import argv
 
-if __name__ == "__main__":
-    a = []
-    if len(argv) != 2:
-        print("Usage: nqueens N")
-        exit(1)
-    if argv[1].isdigit() is False:
-        print("N must be a number")
-        exit(1)
-    n = int(argv[1])
+def solve_nqueens(n):
+    """
+    Solve the N Queens puzzle and print solutions.
+    """
+    def is_safe(board, row, col):
+        """
+        Check if it's safe to place a queen at a given position.
+        """
+        for prev_row in range(row):
+            if board[prev_row] == col or \
+               board[prev_row] - prev_row == col - row or \
+               board[prev_row] + prev_row == col + row:
+                return False
+        return True
+
+    def print_solution(board):
+        """
+        Print the N Queens board.
+        """
+        for row in range(n):
+            print([row, board[row]])
+
+    def solve(board, row):
+        """
+        Recursively solve the N Queens puzzle.
+        """
+        if row == n:
+            print_solution(board)
+            return
+
+        for col in range(n):
+            if is_safe(board, row, col):
+                board[row] = col
+                solve(board, row + 1)
+                board[row] = -1
+
     if n < 4:
         print("N must be at least 4")
         exit(1)
 
-    for i in range(n):
-        a.append([i, None])
+    board = [-1] * n
+    solve(board, 0)
 
-    def already_exists(y):
-        for x in range(n):
-            if y == a[x][1]:
-                return True
-        return False
+if __name__ == "__main__":
+    if len(argv) != 2:
+        print("Usage: nqueens N")
+        exit(1)
 
-    def reject(x, y):
-        if (already_exists(y)):
-            return False
-        i = 0
-        while(i < x):
-            if abs(a[i][1] - y) == abs(i - x):
-                return False
-            i += 1
-        return True
+    try:
+        N = int(argv[1])
+    except ValueError:
+        print("N must be a number")
+        exit(1)
 
-    def clear_a(x):
-        for i in range(x, n):
-            a[i][1] = None
+    solve_nqueens(N)
 
-    def nqueens(x):
-        for y in range(n):
-            clear_a(x)
-            if reject(x, y):
-                a[x][1] = y
-                if (x == n - 1):
-                    print(a)
-                else:
-                    nqueens(x + 1)
-
-    nqueens(0)
