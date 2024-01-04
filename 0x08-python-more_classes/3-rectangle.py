@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """
-This is the "Rectangle"  module.
-
-This module provides a simple Rectangle class.
+This module defines a Rectangle class.
 """
-
 
 class Rectangle:
     """Initializes a new Rectangle instance with optional width and height."""
