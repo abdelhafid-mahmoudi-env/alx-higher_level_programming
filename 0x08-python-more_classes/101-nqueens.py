@@ -2,18 +2,12 @@
 import sys
 
 def is_safe(board, row, col, n):
+    # Check if it's safe to place a queen at a given position
     for i in range(col):
-        if board[row][i] == 1:
+        if board[i] == row or \
+           board[i] - i == row - col or \
+           board[i] + i == row + col:
             return False
-
-    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
-
-    for i, j in zip(range(row, n, 1), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
-
     return True
 
 def solve_nqueens(n):
@@ -21,34 +15,29 @@ def solve_nqueens(n):
         print("N must be at least 4")
         sys.exit(1)
 
-    board = [[0 for _ in range(n)] for _ in range(n)]
-    solutions = []
-
-    def backtrack(col):
+    def backtrack(board, col):
         if col == n:
-            solutions.append([[i, row] for i, row in enumerate(board)])
+            for row in board:
+                print([row.index(1), row])
+            print()
             return
-
         for row in range(n):
             if is_safe(board, row, col, n):
-                board[row][col] = 1
-                backtrack(col + 1)
-                board[row][col] = 0
+                board[col] = row
+                backtrack(board, col + 1)
+                board[col] = -1
 
-    backtrack(0)
+    board = [-1] * n
+    backtrack(board, 0)
 
-    for solution in solutions:
-        print(solution)
+if len(sys.argv) != 2:
+    print("Usage: nqueens N")
+    sys.exit(1)
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
+try:
+    N = int(sys.argv[1])
+except ValueError:
+    print("N must be a number")
+    sys.exit(1)
 
-    try:
-        N = int(sys.argv[1])
-    except ValueError:
-        print("N must be a number")
-        sys.exit(1)
-
-    solve_nqueens(N)
+solve_nqueens(N)
