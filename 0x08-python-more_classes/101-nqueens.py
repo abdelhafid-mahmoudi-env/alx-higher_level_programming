@@ -2,50 +2,55 @@
 import sys
 
 
+def print_solution(board):
+    solution = []
+    for row in range(len(board)):
+        for col in range(len(board)):
+            if board[row][col] == 1:
+                solution.append([row, col])
+    print(solution)
+
+
 def is_safe(board, row, col):
-    """Check if it's safe to place a queen at a given position."""
-    for prev_row in range(row):
-        if board[prev_row] == col or \
-           board[prev_row] - prev_row == col - row or \
-           board[prev_row] + prev_row == col + row:
+    for i in range(len(board)):
+        if board[row][i] == 1 or board[i][col] == 1:
             return False
+
+    for i in range(len(board)):
+        for j in range(len(board)):
+            if (i + j == row + col) or (i - j == row - col):
+                if board[i][j] == 1:
+                    return False
+
     return True
 
-def solve_nqueens(n):
-    """Solve the N Queens puzzle and print solutions."""
-    def print_solution(board):
-        """Print the N Queens board."""
-        solution = [[i, board[i]] for i in range(n)]
-        print(solution)
 
-    def solve(board, row):
-        """Recursively solve the N Queens puzzle."""
-        if row == n:
-            print_solution(board)
-            return
+def solve_nqueens(board, col):
+    if col >= len(board):
+        print_solution(board)
+        return
+    for i in range(len(board)):
+        if is_safe(board, i, col):
+            board[i][col] = 1
+            solve_nqueens(board, col + 1)
+            board[i][col] = 0
 
-        for col in range(n):
-            if is_safe(board, row, col):
-                board[row] = col
-                solve(board, row + 1)
-                board[row] = -1
 
-    board = [-1] * n
-    solve(board, 0)
+def nqueens(n):
+    board = [[0 for _ in range(n)] for _ in range(n)]
+    solve_nqueens(board, 0)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
-
     try:
-        N = int(sys.argv[1])
+        n = int(sys.argv[1])
     except ValueError:
         print("N must be a number")
         sys.exit(1)
-
-    if N < 4:
+    if n < 4:
         print("N must be at least 4")
         sys.exit(1)
-
-    solve_nqueens(N)
+    nqueens(n)
