@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
-This module defines a Rectangle class.
+This is the "Rectangle"  module.
+
+La tete de rectangle.
 """
 
 
