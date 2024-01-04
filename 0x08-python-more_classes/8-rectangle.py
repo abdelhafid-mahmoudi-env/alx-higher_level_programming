@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """
-This is the "Rectangle"  module.
+This module defines a Rectangle class.
 
-This module Rectangle.
+The Rectangle class represents rectangles and provides methods to calculate
+area, perimeter, and compare rectangles based on their areas.
 """
 
 
