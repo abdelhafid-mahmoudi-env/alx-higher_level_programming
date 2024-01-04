@@ -8,6 +8,7 @@ This module provides a simple Rectangle class.
 
 class Rectangle:
     """A class to represent rectangles."""
+    
     number_of_instances = 0
     print_symbol = "#"
 
