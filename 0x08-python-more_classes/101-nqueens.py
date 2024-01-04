@@ -1,10 +1,4 @@
 #!/usr/bin/python3
-"""
-This is the "N Queens" module.
-
-This module provides a solution to the N Queens puzzle.
-"""
-
 import sys
 
 def is_safe(board, row, col):
