@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 import sys
 
+
 def is_safe(board, row, col):
-    """
-    Check if it's safe to place a queen at a given position.
-    """
+    """Check if it's safe to place a queen at a given position."""
     for prev_row in range(row):
         if board[prev_row] == col or \
            board[prev_row] - prev_row == col - row or \
@@ -13,20 +12,14 @@ def is_safe(board, row, col):
     return True
 
 def solve_nqueens(n):
-    """
-    Solve the N Queens puzzle and print solutions.
-    """
+    """Solve the N Queens puzzle and print solutions."""
     def print_solution(board):
-        """
-        Print the N Queens board.
-        """
+        """Print the N Queens board."""
         solution = [[i, board[i]] for i in range(n)]
         print(solution)
 
     def solve(board, row):
-        """
-        Recursively solve the N Queens puzzle.
-        """
+        """Recursively solve the N Queens puzzle."""
         if row == n:
             print_solution(board)
             return
