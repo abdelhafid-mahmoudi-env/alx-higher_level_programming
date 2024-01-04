@@ -5,29 +5,29 @@ This is the "N Queens" module.
 This module provides a solution to the N Queens puzzle.
 """
 
-from sys import argv
+import sys
+
+def is_safe(board, row, col):
+    """
+    Check if it's safe to place a queen at a given position.
+    """
+    for prev_row in range(row):
+        if board[prev_row] == col or \
+           board[prev_row] - prev_row == col - row or \
+           board[prev_row] + prev_row == col + row:
+            return False
+    return True
 
 def solve_nqueens(n):
     """
     Solve the N Queens puzzle and print solutions.
     """
-    def is_safe(board, row, col):
-        """
-        Check if it's safe to place a queen at a given position.
-        """
-        for prev_row in range(row):
-            if board[prev_row] == col or \
-               board[prev_row] - prev_row == col - row or \
-               board[prev_row] + prev_row == col + row:
-                return False
-        return True
-
     def print_solution(board):
         """
         Print the N Queens board.
         """
-        for row in range(n):
-            print([row, board[row]])
+        solution = [[i, board[i]] for i in range(n)]
+        print(solution)
 
     def solve(board, row):
         """
@@ -45,21 +45,21 @@ def solve_nqueens(n):
 
     if n < 4:
         print("N must be at least 4")
-        exit(1)
+        sys.exit(1)
 
     board = [-1] * n
     solve(board, 0)
 
 if __name__ == "__main__":
-    if len(argv) != 2:
+    if len(sys.argv) != 2:
         print("Usage: nqueens N")
-        exit(1)
+        sys.exit(1)
 
     try:
-        N = int(argv[1])
+        N = int(sys.argv[1])
     except ValueError:
         print("N must be a number")
-        exit(1)
+        sys.exit(1)
 
     solve_nqueens(N)
 
