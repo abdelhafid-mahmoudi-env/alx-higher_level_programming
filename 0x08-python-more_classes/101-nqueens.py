@@ -3,16 +3,12 @@ import sys
 
 
 def is_safe(board, row, col):
-    for i in range(len(board)):
-        if board[row][i] == 1 or board[i][col] == 1:
+    """Check if it's safe to place a queen at a given position."""
+    for prev_row in range(row):
+        if board[prev_row] == col or \
+           board[prev_row] - prev_row == col - row or \
+           board[prev_row] + prev_row == col + row:
             return False
-
-    for i in range(len(board)):
-        for j in range(len(board)):
-            if (i + j == row + col) or (i - j == row - col):
-                if board[i][j] == 1:
-                    return False
-
     return True
 
 def solve_nqueens(n):
