@@ -2,15 +2,6 @@
 import sys
 
 
-def print_solution(board):
-    solution = []
-    for row in range(len(board)):
-        for col in range(len(board)):
-            if board[row][col] == 1:
-                solution.append([row, col])
-    print(solution)
-
-
 def is_safe(board, row, col):
     for i in range(len(board)):
         if board[row][i] == 1 or board[i][col] == 1:
@@ -24,22 +15,28 @@ def is_safe(board, row, col):
 
     return True
 
-
-def solve_nqueens(board, col):
-    if col >= len(board):
-        print_solution(board)
-        return
-    for i in range(len(board)):
-        if is_safe(board, i, col):
-            board[i][col] = 1
-            solve_nqueens(board, col + 1)
-            board[i][col] = 0
-
-
 def nqueens(n):
+    """Solve the N Queens puzzle and print solutions."""
+    def print_solution(board):
+        solution = []
+        for row in range(len(board)):
+            for col in range(len(board)):
+                if board[row][col] == 1:
+                    solution.append([row, col])
+        print(solution)
+
+    def solve_nqueens(board, col):
+        if col >= len(board):
+            print_solution(board)
+            return
+        for i in range(len(board)):
+            if is_safe(board, i, col):
+                board[i][col] = 1
+                solve_nqueens(board, col + 1)
+                board[i][col] = 0
+
     board = [[0 for _ in range(n)] for _ in range(n)]
     solve_nqueens(board, 0)
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
