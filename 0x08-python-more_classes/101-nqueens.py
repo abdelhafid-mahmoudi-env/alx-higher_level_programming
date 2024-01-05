@@ -3,28 +3,32 @@ import sys
 
 
 def is_safe(board, row, col):
-    """Check if it's safe to place a queen at a given position."""
-    for i in range(len(board)):
-        if board[row][i] == 1 or board[i][col] == 1:
+    """
+    Check if it's safe to place a queen at a given position.
+    """
+    for prev_row in range(row):
+        if board[prev_row] == col or \
+           board[prev_row] - prev_row == col - row or \
+           board[prev_row] + prev_row == col + row:
             return False
-
-    for i in range(len(board)):
-        for j in range(len(board)):
-            if (i + j == row + col) or (i - j == row - col):
-                if board[i][j] == 1:
-                    return False
-
     return True
 
+
 def solve_nqueens(n):
-    """Solve the N Queens puzzle and print solutions."""
+    """
+    Solve the N Queens puzzle and print solutions.
+    """
     def print_solution(board):
-        """Print the N Queens board."""
+        """
+        Print the N Queens board.
+        """
         solution = [[i, board[i]] for i in range(n)]
         print(solution)
 
     def solve(board, row):
-        """Recursively solve the N Queens puzzle."""
+        """
+        Recursively solve the N Queens puzzle.
+        """
         if row == n:
             print_solution(board)
             return
@@ -35,22 +39,23 @@ def solve_nqueens(n):
                 solve(board, row + 1)
                 board[row] = -1
 
+    if n < 4:
+        print("N must be at least 4", file=sys.stderr)
+        sys.exit(1)
+
     board = [-1] * n
     solve(board, 0)
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: nqueens N")
+        print("Usage: nqueens N", file=sys.stderr)
         sys.exit(1)
 
     try:
         N = int(sys.argv[1])
     except ValueError:
-        print("N must be a number")
-        sys.exit(1)
-
-    if N < 4:
-        print("N must be at least 4")
+        print("N must be a number", file=sys.stderr)
         sys.exit(1)
 
     solve_nqueens(N)
