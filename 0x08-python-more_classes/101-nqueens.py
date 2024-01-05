@@ -1,11 +1,6 @@
 #!/usr/bin/python3
-"""
-This is the "N Queens" module.
-
-This module provides a solution to the N Queens puzzle.
-"""
-
 import sys
+
 
 def is_safe(board, row, col):
     """
@@ -17,6 +12,7 @@ def is_safe(board, row, col):
            board[prev_row] + prev_row == col + row:
             return False
     return True
+
 
 def solve_nqueens(n):
     """
@@ -49,6 +45,7 @@ def solve_nqueens(n):
 
     board = [-1] * n
     solve(board, 0)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
