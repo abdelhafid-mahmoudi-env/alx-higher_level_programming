@@ -1,9 +1,13 @@
 #!/usr/bin/python3
+"""LockedClass for user prevents"""
+
 
 class LockedClass:
-    def __setattr__(self, name, value):
-        # Check if the attribute being assigned is not 'first_name'
-        if name != 'first_name':
-            # If it's not 'first_name', raise an AttributeError
-            raise AttributeError("'LockedClass' object has no attribute '{}'".format(name))
+    """Prevents the user from dynamically creating new instance attributes."""
 
+    __slots__ = ["first_name"]
+
+    def __init__(self):
+        """Creates new instances of Locked Class."""
+
+        self.first_name = "first_name"
