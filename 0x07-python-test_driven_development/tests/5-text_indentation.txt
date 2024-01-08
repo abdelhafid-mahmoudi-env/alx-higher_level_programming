@@ -1,0 +1,21 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+# Test with standard sentences
+>>> text_indentation("Hello. How are you? Great:")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+Great:
+<BLANKLINE>
+
+# Test with no special characters
+>>> text_indentation("Hello how are you")
+Hello how are you
+
+# Test with leading and trailing spaces
+>>> text_indentation("  Hello. How are you?  ")
+  Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
