@@ -6,9 +6,7 @@ Defines a class BaseGeometry with a public instance method.
 
 
 class BaseGeometry:
-    """
-    A class BaseGeometry.
-    """
+    """A class BaseGeometry."""
 
     def area(self):
         """
