@@ -1,0 +1,30 @@
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+# Test with valid matrices
+>>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+[[7, 10], [15, 22]]
+
+# Test with non-list input for m_a
+>>> matrix_mul("not a matrix", [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+TypeError: m_a must be a list of lists
+
+# Test with empty matrix for m_a
+>>> matrix_mul([], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+ValueError: m_a can't be empty
+
+# Test with non-rectangular matrix
+>>> matrix_mul([[1, 2], [3]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+TypeError: each row of m_a must be of the same size
+
+# Test with incompatible matrices
+>>> matrix_mul([[1, 2, 3]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+ValueError: m_a and m_b can't be multiplied
+
