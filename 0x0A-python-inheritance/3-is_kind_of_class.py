@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Contains a function that checks if an object is an instance. """
+""" Module for the function is_same_class. """
+
 
 def is_same_class(obj, a_class):
     """
