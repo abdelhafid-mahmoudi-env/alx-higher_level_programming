@@ -5,6 +5,7 @@ A module for reading and printing the contents of a text file.
 This module provides a function to read a given text file and print its contents to standard output.
 """
 
+
 def read_file(filename=""):
     """
     Read a text file and print its contents to stdout.
