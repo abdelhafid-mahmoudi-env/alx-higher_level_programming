@@ -1,25 +1,30 @@
->>> import sys
->>> sys.path.append('/path/to/your/script/folder')
->>> from base_geometry import BaseGeometry
+>>> from 7-base_geometry import BaseGeometry
+
+# Test 1: Check if the area method raises an Exception with the correct message
 >>> bg = BaseGeometry()
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
 
-# Test with a valid value
->>> bg.integer_validator("age", 10)
-
-# Test with a non-integer value
+# Test 2: Check if integer_validator method raises TypeError for non-integers
 >>> bg.integer_validator("name", "John")
 Traceback (most recent call last):
-    ...
+...
 TypeError: name must be an integer
 
-# Test with a negative value
->>> bg.integer_validator("age", -4)
-Traceback (most recent call last):
-    ...
-ValueError: age must be greater than 0
-
-# Test with zero
+# Test 3: Check if integer_validator method raises ValueError for integers <= 0
 >>> bg.integer_validator("age", 0)
 Traceback (most recent call last):
-    ...
+...
 ValueError: age must be greater than 0
+
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+...
+ValueError: distance must be greater than 0
+
+# Test 4: Check if integer_validator method works correctly for valid input
+>>> bg.integer_validator("my_int", 12)
+>>> bg.integer_validator("width", 89)
+

@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 """
-Module for the BaseGeometry class with integer validator.
+This program have a class with a validator and an error
 """
 
 
 class BaseGeometry():
-    """ BaseGeometry class with area and integer_validator methods. """
+    """
+    This class contain a method not implemented and a validator
+    """
 
     def area(self):
         """
-        Raise an Exception with the message 'area() is not implemented'.
+        This function raise an exception
         """
         raise Exception('area() is not implemented')
 
