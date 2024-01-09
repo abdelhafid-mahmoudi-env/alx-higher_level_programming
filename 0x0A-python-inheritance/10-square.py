@@ -4,18 +4,17 @@ Module for the Square class that inherits from Rectangle.
 """
 
 
-PrevSquare = __import__('10-square').Square
+Rectangle = __import__('9-rectangle').Rectangle
 
 
-class Square(PrevSquare):
-    """
-    Square class that inherits from Rectangle.
-    """
-
+class Square(Rectangle):
+    """Square class that inherits from Rectangle."""
     def __init__(self, size):
         """Initializes a new Square."""
-        super().__init__(size)
+        self.integer_validator("size", size)
+        self.__size = size
+        super().__init__(size, size)
 
-    def __str__(self):
+    def area(self):
         """Get a string representation of the square."""
-        return '[Square] {0:d}/{0:d}'.format(self.__size)
+        return self.__size ** 2
