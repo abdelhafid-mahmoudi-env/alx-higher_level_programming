@@ -1,0 +1,25 @@
+>>> import sys
+>>> sys.path.append('/path/to/your/script/folder')
+>>> from base_geometry import BaseGeometry
+>>> bg = BaseGeometry()
+
+# Test with a valid value
+>>> bg.integer_validator("age", 10)
+
+# Test with a non-integer value
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+# Test with a negative value
+>>> bg.integer_validator("age", -4)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
+
+# Test with zero
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
