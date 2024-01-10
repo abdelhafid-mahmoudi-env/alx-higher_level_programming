@@ -1,10 +1,16 @@
 #!/usr/bin/python3
+""" Ajoute les arguments à une liste, puis enregistre dans un fichier """
 
-def class_to_json(obj):
-    """Converts an object to a dictionary for JSON serialization."""
-    if hasattr(obj, '__dict__'):
-        return obj.__dict__
-    elif hasattr(obj, '__slots__'):
-        return {key: getattr(obj, key) for key in obj.__slots__ if hasattr(obj, key)}
-    else:
-        return {}
+import sys
+
+if __name__ == "__main__":
+    save_json = __import__('5-save_to_json_file').save_to_json_file
+    load_json = __import__('6-load_from_json_file').load_from_json_file
+
+    try:
+        items = load_json("add_item.json")
+    except FileNotFoundError:
+        items = []
+
+    items.extend(sys.argv[1:])
+    save_json(items, "add_item.json")
