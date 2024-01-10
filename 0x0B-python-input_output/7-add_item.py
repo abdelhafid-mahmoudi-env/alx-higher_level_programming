@@ -4,13 +4,12 @@
 import sys
 import json
 
+# Importing the necessary functions from previous tasks
 from save_to_json_file import save_to_json_file
 from load_from_json_file import load_from_json_file
 
-
 def add_items_to_list(filename, items):
-    """
-    Adds items to a list and saves it to a JSON file.
+    """Adds items to a list and saves it to a JSON file.
 
     Args:
         filename (str): The name of the file.
