@@ -1,20 +1,27 @@
-"""Module for saving to json"""
-import json
-import os.path
+#!/usr/bin/python3
 import sys
-from sys import argv
+import os.path
+import json
 
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
+def save_to_json_file(my_obj, filename):
+    """Save an object to a JSON file."""
+    with open(filename, mode="w", encoding="utf-8") as file:
+        json.dump(my_obj, file)
+
+def load_from_json_file(filename):
+    """Load an object from a JSON file."""
+    if not os.path.exists(filename):
+        return []
+    with open(filename, mode="r", encoding="utf-8") as file:
+        return json.load(file)
+
 
 if __name__ == "__main__":
     filename = "add_item.json"
-    json_list = []
+    try:
+        my_list = load_from_json_file(filename)
+    except FileNotFoundError:
+        my_list = []
 
-    if os.path.exists(filename):
-        json_list = load_from_json_file(filename)
-
-    for index in argv[1:]:
-        json_list.append(index)
-
-    save_to_json_file(json_list, filename)
+    my_list.extend(sys.argv[1:])
+    save_to_json_file(my_list, filename)
