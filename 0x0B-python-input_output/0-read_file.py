@@ -7,8 +7,7 @@ This module provides a function to read a given text file and print its contents
 
 
 def read_file(filename=""):
-    """
-    Read a text file and print its contents to stdout.
+    """Read a text file and print its contents to stdout.
 
     Args:
         filename (str): The name of the file to be read.
