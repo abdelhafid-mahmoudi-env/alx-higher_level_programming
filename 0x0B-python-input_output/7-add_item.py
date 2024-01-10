@@ -1,22 +1,18 @@
 #!/usr/bin/python3
-""" Appends arguments to a list and then saves it to a file. """
+"""Module for converting an object of a class to a dictionary for JSON."""
 
 import sys
 
 if __name__ == "__main__":
-    # Import necessary functions
-    save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
-    load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
+    save_json = __import__('5-save_to_json_file').save_to_json_file
+    load_json = __import__('6-load_from_json_file').load_from_json_file
 
     try:
-        # Load the existing list
-        my_list = load_from_json_file("add_item.json")
+        items = load_json("add_item.json")
     except FileNotFoundError:
-        # Initialize an empty list
-        my_list = []
+        # Initialisation d'une liste vide
+        items = []
 
-    # Append the arguments to the list
-    my_list.extend(sys.argv[1:])
+    items.extend(sys.argv[1:])
 
-    # Save the list to a file
-    save_to_json_file(my_list, "add_item.json")
+    save_json(items, "add_item.json")
