@@ -1,22 +1,22 @@
 #!/usr/bin/python3
-""" Ajoute les arguments à une liste, puis enregistre dans un fichier """
+"""Module for managing JSON data."""
 
+import json
+import os.path
 import sys
+from sys import argv
 
-if __name__ == "__main__":
-    # Importation des fonctions nécessaires
-    save_json = __import__('5-save_to_json_file').save_to_json_file
-    load_json = __import__('6-load_from_json_file').load_from_json_file
+# Rename the functions as needed
+save_json_data = __import__('7-save_to_json_file').save_to_json_file
+load_json_data = __import__('8-load_from_json_file').load_from_json_file
 
-    try:
-        # Chargement de la liste existante
-        items = load_json("add_item.json")
-    except FileNotFoundError:
-        # Initialisation d'une liste vide
-        items = []
+json_filename = "add_item.json"
+json_data = []
 
-    # Ajout des arguments à la liste
-    items.extend(sys.argv[1:])
+if os.path.exists(json_filename):
+    json_data = load_json_data(json_filename)
 
-    # Sauvegarde de la liste dans un fichier
-    save_json(items, "add_item.json")
+for item in argv[1:]:
+    json_data.append(item)
+
+save_json_data(json_data, json_filename)
