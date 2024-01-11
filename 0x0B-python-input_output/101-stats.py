@@ -2,7 +2,7 @@
 import sys
 
 
-def custom_parse_line(line):
+def parse_line(line):
     """ Parse the line and return status code and file size. """
     parts = line.split(" ")
     status_code = parts[-2]
@@ -10,7 +10,7 @@ def custom_parse_line(line):
     return status_code, file_size
 
 
-def custom_print_stats(total_size, status_codes):
+def print_stats(total_size, status_codes):
     """ Print the statistics. """
     print("File size: {}".format(total_size))
     for code in sorted(status_codes.keys()):
@@ -25,7 +25,7 @@ def main():
 
     try:
         for line in sys.stdin:
-            status_code, file_size = custom_parse_line(line)
+            status_code, file_size = parse_line(line)
             total_size += file_size
             if status_code in status_codes:
                 status_codes[status_code] += 1
@@ -34,10 +34,10 @@ def main():
 
             line_count += 1
             if line_count % 10 == 0:
-                custom_print_stats(total_size, status_codes)
+                print_stats(total_size, status_codes)
 
     except KeyboardInterrupt:
-        custom_print_stats(total_size, status_codes)
+        print_stats(total_size, status_codes)
         raise
 
 
