@@ -26,3 +26,6 @@ for item in argv[1:]:
 
 # Save the updated JSON data to the file
 save_to_json_file(json_data, json_filename)
+
+# Print the content of the JSON file
+print(json_data)
