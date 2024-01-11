@@ -1,4 +1,5 @@
-mport sys
+#!/usr/bin/python3
+import sys
 import os
 import json
 from save_to_json_file import save_to_json_file
