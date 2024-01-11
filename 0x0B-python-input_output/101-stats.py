@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Module the computed metrics."""
+
 import sys
 
 
@@ -9,6 +11,7 @@ def print_metrics(total_size, status_codes):
     for code in sorted_status_codes:
         if status_codes[code] > 0:
             print("{}: {}".format(code, status_codes[code]))
+
 
 line_count = 0
 total_size = 0
