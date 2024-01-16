@@ -26,6 +26,16 @@ class Rectangle(Base):
         """Return the string representation of the Rectangle."""
         return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
 
+    def update(self, *args, **kwargs):
+        """Update the Rectangle attributes."""
+        attrs = ['id', 'width', 'height', 'x', 'y']
+        if args:
+            for attr, value in zip(attrs, args):
+                setattr(self, attr, value)
+        elif kwargs:
+            for key, value in kwargs.items():
+                if key in attrs:
+                    setattr(self, key, value)
 
     def display(self):
         """Print the Rectangle instance using the '#' character."""
