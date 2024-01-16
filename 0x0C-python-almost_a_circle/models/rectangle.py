@@ -31,7 +31,7 @@ class Rectangle(Base):
         """Print the Rectangle instance using the '#' character."""
 	print("\n" * self.y, end="")
         for _ in range(self.height):
-            print("#" * self.width)
+        	print(" " * self.x + "#" * self.width)
     
     def area(self):
     	"""Return the area of the Rectangle."""
