@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Module base.py: Defines the Base class, which is the foundation for all other model classes. """
+
 import turtle
 
 
