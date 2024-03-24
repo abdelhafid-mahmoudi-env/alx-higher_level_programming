@@ -33,3 +33,4 @@ if __name__ == "__main__":
     except MySQLdb.Error as e:
         print("MySQL Error:", e)
         sys.exit(1)
+
