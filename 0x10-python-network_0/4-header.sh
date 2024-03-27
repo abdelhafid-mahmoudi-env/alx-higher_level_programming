@@ -5,4 +5,5 @@
 #   <URL>: The URL to which the GET request will be sent
 
 # Send GET request with the specified header and display the response body
-curl -sH "X-School-User-Id: 98" "$1"
+curl -s -H "X-School-User-Id: 98" "$1"
+echo ""
