@@ -1,3 +1,20 @@
 #!/bin/bash
-# This script takes in a URL, sends a GET request to the URL, and displays the body of the response (only for 200 status code)
-curl -sL -w "%{http_code}" "$1" -o /tmp/body_response.txt && { [ $(cat /tmp/body_response.txt) -eq 200 ] && cat /tmp/body_response.txt || echo ""; } | sed '$d'
+# Description: Sends a GET request to a URL and displays the body of the response if the status code is 200.
+# Usage: ./1-body.sh <URL>
+# Arguments:
+#   <URL>: The URL to send the GET request to.
+
+# Send a GET request to the provided URL and store the response body in a variable
+response_body=$(curl -sL -w "%{http_code}" -o /dev/null "$1")
+
+# Extract the HTTP status code from the response
+http_status=$(echo "$response_body" | tail -n1)
+
+# Check if the HTTP status code is 200
+if [[ $http_status -eq 200 ]]; then
+    # Display the body of the response
+    curl -sL "$1"
+else
+    # Display an empty line if the status code is not 200
+    echo ""
+fi
