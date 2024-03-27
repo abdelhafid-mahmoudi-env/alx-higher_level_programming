@@ -11,4 +11,4 @@ if [ $# -ne 1 ]; then
 fi
 
 # Send GET request with the specified header and display the response body
-curl -sH "X-School-User-Id: 98" "$1"
+curl "$1" -sX GET -H "X-HolbertonSchool-User-Id:98"
