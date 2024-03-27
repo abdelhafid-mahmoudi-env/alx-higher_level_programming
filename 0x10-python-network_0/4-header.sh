@@ -3,5 +3,4 @@
 # It includes a header 'X-School-User-Id' with the value '98' in the request.
 # Usage: ./4-header.sh <URL>
 URL=$1
-
-curl -s -H "X-School-User-Id: 98" $URL
+curl "$URL" -sX GET -H "X-School-User-Id:98"
