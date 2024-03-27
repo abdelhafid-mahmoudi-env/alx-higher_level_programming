@@ -11,10 +11,4 @@ response_body=$(curl -sL -w "%{http_code}" -o /dev/null "$1")
 http_status=$(echo "$response_body" | tail -n1)
 
 # Check if the HTTP status code is 200
-if [[ $http_status -eq 200 ]]; then
-    # Display the body of the response
-    curl -sL "$1"
-else
-    # Display an empty line if the status code is not 200
-    echo ""
-fi
+curl -sL "$1"
