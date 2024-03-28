@@ -9,7 +9,7 @@ import urllib.request
 
 if __name__ == "__main__":
     url = 'https://alx-intranet.hbtn.io/status'
-    # Use a with statement to ensure proper acquisition and release of resources
+    # Use a with statement to ensure proper acquisition
     with urllib.request.urlopen(url) as response:
         body = response.read()
         print("Body response:")
