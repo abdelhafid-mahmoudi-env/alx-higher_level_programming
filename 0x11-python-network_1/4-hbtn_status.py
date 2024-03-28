@@ -16,7 +16,7 @@ def fetch_status():
     data = response.text
 
     print("Body response:")
-    print("\t- type: {}".format(type(data).__name__))
+    print("\t- type: {}".format(type(data)))
     print("\t- content: {}".format(data))
 
 
