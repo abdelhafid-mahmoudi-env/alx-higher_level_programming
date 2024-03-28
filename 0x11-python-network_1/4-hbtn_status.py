@@ -5,11 +5,20 @@ Script that fetches https://alx-intranet.hbtn.io/status
 
 import requests
 
-if __name__ == "__main__":
+
+def fetch_status():
+    """
+    Fetches the status from https://alx-intranet.hbtn.io/status
+    and prints the body of the response.
+    """
     url = 'https://alx-intranet.hbtn.io/status'
     response = requests.get(url)
-    data = response.json()
+    data = response.text
 
     print("Body response:")
-    print("\t- type:", type(data).__name__)
-    print("\t- content:", data.get('status'))
+    print("\t- type: {}".format(type(data).__name__))
+    print("\t- content: {}".format(data))
+
+
+if __name__ == "__main__":
+    fetch_status()
