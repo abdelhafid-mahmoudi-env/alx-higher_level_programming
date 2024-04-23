@@ -1,30 +1,50 @@
 #!/usr/bin/node
-
 const request = require('request');
 
-const pathname = `https://swapi-api.alx-tools.com/api/films/`;
-const slug = process.argv[2];
+const movieId = process.argv[2];
+const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
-request(pathname + slug, (error, response, body) => {
-  if (error) {
-    console.error(error);
-  } else {
-    const res = JSON.parse(body);
-    const chars = res.characters;
-    const recursive = (index) => {
-      if (index >= chars.length) {
-        return;
+// Function to fetch movie data
+function fetchMovieData(url) {
+  return new Promise((resolve, reject) => {
+    request(url, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else if (response.statusCode !== 200) {
+        reject(new Error(`Unexpected status code: ${response.statusCode}`));
+      } else {
+        resolve(JSON.parse(body));
       }
-      request(chars[index], (error, response, body) => {
-        if (error) {
-          console.error(error);
-        } else {
-          const char = JSON.parse(body);
-          console.log(char.name);
-          recursive(index + 1);
-        }
-      });
-    };
-    recursive(0);
+    });
+  });
+}
+
+// Function to fetch characters recursively
+async function fetchCharactersRecursively(urls, characters = []) {
+  if (urls.length === 0) {
+    return characters;
   }
-});
+
+  const [url, ...remainingUrls] = urls;
+  try {
+    const characterData = await fetchMovieData(url);
+    characters.push(characterData.name);
+    return fetchCharactersRecursively(remainingUrls, characters);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Print characters in the right order
+async function printCharactersInOrder(movieId) {
+  try {
+    const movieData = await fetchMovieData(apiUrl);
+    const charactersUrls = movieData.characters;
+    const characters = await fetchCharactersRecursively(charactersUrls);
+    characters.forEach(character => console.log(character));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+printCharactersInOrder(movieId);
